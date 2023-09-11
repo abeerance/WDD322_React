@@ -1,0 +1,8 @@
+.card {
+  background: #e8e8e8;
+  border-radius: 10px;
+}
+
+.card--title {
+  font-size: 24px;
+}
