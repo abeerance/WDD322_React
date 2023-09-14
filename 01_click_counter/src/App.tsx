@@ -22,7 +22,7 @@ const App: React.FC = () => {
     <div>
       <h1>My very first React App</h1>
       <h2>This will be a simple click counter</h2>
-      <ClickCounterCard />
+      <ClickCounterCard title='A simple click counter card' />
     </div>
   );
 };
