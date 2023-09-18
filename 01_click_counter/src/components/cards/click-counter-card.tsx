@@ -57,9 +57,37 @@ const ClickCounterCard: React.FC<ClickCounterCardProps> = ({ title }) => {
       >
         <Typography>
           Current count:
-          <Box component='span' fontWeight={900}>
+          <Box
+            component='span'
+            fontWeight={900}
+            sx={{
+              fontSize: "40px",
+              color:
+                currentCount < -20 && currentCount > -30
+                  ? "violet"
+                  : currentCount <= -10 && currentCount >= -20
+                  ? "#741313"
+                  : currentCount < 0 && currentCount >= -10
+                  ? "red"
+                  : currentCount >= 0 && currentCount <= 10
+                  ? "green"
+                  : currentCount > 10 && currentCount <= 20
+                  ? "darkgreen"
+                  : currentCount > 20 && currentCount <= 30
+                  ? "blue"
+                  : "black",
+            }}
+          >
             {currentCount}
           </Box>
+          {/* zwischen 0 und -10 -> Farbe rot
+          zwischen -10 und -20 -> Dunkelrot
+          zwischen -20 und -30 -> Violet
+          zwischen 0 und 10 -> Farbe grün
+          zwischen 10 und 20 -> Dunkelrün
+          zwischen 20 und 30 -> Blau
+          else -> Schwarz
+          */}
         </Typography>
         <Box sx={{ display: "flex", flexWrap: "wrap" }}>
           <AppButton
