@@ -1,3 +1,4 @@
+import { Box, Typography } from "@mui/material";
 import "./App.css";
 import ClickCounterCard from "./components/cards/click-counter-card";
 
@@ -19,11 +20,24 @@ import ClickCounterCard from "./components/cards/click-counter-card";
 // Arrow Function mit Typisierung
 const App: React.FC = () => {
   return (
-    <div>
-      <h1>My very first React App</h1>
-      <h2>This will be a simple click counter</h2>
+    <Box
+      sx={{
+        width: "100%",
+        height: "100vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexDirection: "column",
+      }}
+    >
+      <Typography variant='h1' fontWeight={700}>
+        My very first React App
+      </Typography>
+      <Typography variant='h2' fontWeight={500} sx={{ marginY: "40px" }}>
+        This will be a simple click counter
+      </Typography>
       <ClickCounterCard title='A simple click counter card' />
-    </div>
+    </Box>
   );
 };
 

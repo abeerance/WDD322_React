@@ -1,3 +1,4 @@
+import { Box, Card, CardContent, Typography } from "@mui/material";
 import { useState } from "react";
 import AppButton from "../common/buttons/app-button";
 import "./click-counter-card.css";
@@ -20,14 +21,47 @@ const ClickCounterCard: React.FC<ClickCounterCardProps> = ({ title }) => {
   const [currentCount, setCurrentCount] = useState(0);
 
   return (
-    <div className='card'>
-      <div className='card--content'>
-        <h3 className='card--title'>{title}</h3>
-        <p className='card--description'>
+    <Card
+      sx={{
+        borderRadius: "10px",
+        minHeight: "200px",
+        backgroundImage: "linear-gradient(90deg, #330867 0%, #30cfd0 100%);",
+        display: "grid",
+        gap: "20px",
+        gridTemplateColumns: "2fr 1fr",
+      }}
+    >
+      <CardContent>
+        <Typography variant='h5' sx={{ fontWeight: 600, color: "#fff" }}>
+          {title}
+        </Typography>
+        <Typography
+          sx={{
+            textAlign: "left",
+            marginTop: "20px",
+            color: "#fff",
+            fontWeight: 500,
+          }}
+        >
           This is just a simple click counter card
-        </p>
-        <p className='card--curent-count'>Current count: {currentCount}</p>
-        <div className='card--button-container'>
+        </Typography>
+      </CardContent>
+      <CardContent
+        sx={{
+          background: "#fafafa",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
+        <Typography>
+          Current count:
+          <Box component='span' fontWeight={900}>
+            {currentCount}
+          </Box>
+        </Typography>
+        <Box sx={{ display: "flex", flexWrap: "wrap" }}>
           <AppButton
             content='+'
             onClick={() => {
@@ -41,9 +75,9 @@ const ClickCounterCard: React.FC<ClickCounterCardProps> = ({ title }) => {
               setCurrentCount(currentCount - 1);
             }}
           />
-        </div>
-      </div>
-    </div>
+        </Box>
+      </CardContent>
+    </Card>
   );
 };
 

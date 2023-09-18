@@ -1,4 +1,4 @@
-import styles from "./minus-button.module.css";
+import { Button } from "@mui/material";
 
 type AppButtonProps = {
   content: string;
@@ -11,12 +11,20 @@ type AppButtonProps = {
 
 const AppButton: React.FC<AppButtonProps> = ({ content, onClick, isMinus }) => {
   return (
-    <button
+    <Button
+      variant='contained'
       onClick={onClick}
-      className={isMinus ? styles["button--minus"] : styles["button--plus"]}
+      sx={{
+        marginLeft: isMinus ? "10px" : 0,
+        background: "#330867",
+        "&:hover": { background: "#30cfd0" },
+        minWidth: 0,
+        padding: "0 20px",
+        fontSize: "20px",
+      }}
     >
       {content}
-    </button>
+    </Button>
   );
 };
 
