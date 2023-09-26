@@ -10,16 +10,39 @@ import {
   Button,
   Card,
   CardContent,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
   TextField,
   Typography,
 } from "@mui/material";
 import { teal } from "@mui/material/colors";
+import { useEffect, useState } from "react";
+import { apiClient } from "../../constants/api-client";
+import { Globals } from "../../utils/utils";
+import SelectDropdown from "../common/select-dropdown";
 
 const TriviaCard: React.FC = () => {
+  // 1. Erstelle ein useState für die Kategorien
+  const [categories, setCategories] = useState<[]>([]);
+
+  // 2. Erstelle ein useEffect, das die Kategorien von der API holt
+  useEffect(() => {
+    // 3. Erstelle eine async Funktion, die die Kategorien von der API holt
+    const getAllCategories = async () => {
+      // 4. Response variable erstellen, die die Daten von der API beinhaltet
+      const response = await apiClient.get("/api_category.php");
+      // 5. Wenn die Response 200 (OK) ist, dann setCategories mit den Daten von der API
+      if (response.status === 200) {
+        // 6. setCategories mit den Daten von der API
+        setCategories(response.data.trivia_categories);
+      } else {
+        // 7. Wenn die Response nicht 200 ist, dann logge den Fehler
+        console.log("Error");
+      }
+    };
+    // 8. getAllCategories aufrufen
+    getAllCategories();
+    // 9. useEffect nur einmal aufrufen
+  }, []);
+
   return (
     <Card sx={{ minWidth: "600px", marginTop: "50px" }}>
       <CardContent>
@@ -41,34 +64,30 @@ const TriviaCard: React.FC = () => {
               sx={{ marginTop: "25px" }}
             />
             {/* 2. Formcontrol für die Kategorie */}
-            <FormControl fullWidth sx={{ marginTop: "25px" }}>
-              <InputLabel id='simple-select-helper-category'>
-                Category
-              </InputLabel>
-              <Select labelId='simple-select-helper-category' label='Category'>
-                <MenuItem>
-                  <em>None</em>
-                </MenuItem>
-              </Select>
-            </FormControl>
+            <SelectDropdown
+              id='simple-select-helper-category'
+              inputLabel='Category'
+              labelId='simple-select-helper-category'
+              label='Category'
+              elements={categories}
+            />
             {/* 3. Formcontrol für die Schwierigkeit / Difficulty */}
-            <FormControl fullWidth sx={{ marginTop: "25px" }}>
-              <InputLabel id='simple-select-helper-diff'>Difficulty</InputLabel>
-              <Select labelId='simple-select-helper-diff' label='Difficulty'>
-                <MenuItem>
-                  <em>None</em>
-                </MenuItem>
-              </Select>
-            </FormControl>
+            <SelectDropdown
+              id='simple-select-helper-diff'
+              inputLabel='Difficulty'
+              labelId='simple-select-helper-diff'
+              label='Difficulty'
+              elements={Globals.difficulties}
+            />
             {/* 4. Formcontrol für die Typ / Type */}
-            <FormControl fullWidth sx={{ marginTop: "25px" }}>
-              <InputLabel id='simple-select-helper-type'>Type</InputLabel>
-              <Select labelId='simple-select-helper-type' label='Type'>
-                <MenuItem>
-                  <em>None</em>
-                </MenuItem>
-              </Select>
-            </FormControl>
+            <SelectDropdown
+              id='simple-select-helper-type'
+              inputLabel='Type'
+              labelId='simple-select-helper-type'
+              label='Type'
+              elements={Globals.type}
+            />
+
             {/* 5. Button für den Submit */}
             <Button
               variant='contained'
