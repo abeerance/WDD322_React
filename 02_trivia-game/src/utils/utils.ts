@@ -1,15 +1,15 @@
 export class Globals {
   // global class variables for difficulties
   public static readonly difficulties = [
-    { name: "Any" },
-    { name: "Easy" },
-    { name: "Medium" },
-    { name: "Hard" },
+    { name: "any", id: "any" },
+    { name: "easy", id: "easy" },
+    { name: "medium", id: "medium" },
+    { name: "hard", id: "hard" },
   ];
 
-  // global class variables for difficulties
+  // global class variables for types
   public static readonly type = [
-    { name: "Multiple Choice" },
-    { name: "True/False" },
+    { name: "multiple", id: "multiple" },
+    { name: "boolean", id: "boolean" },
   ];
 }

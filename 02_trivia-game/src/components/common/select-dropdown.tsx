@@ -1,11 +1,18 @@
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 
 type SelectDropdownProps = {
   id: string;
   inputLabel: string;
   labelId: string;
   label: string;
-  elements: [] | { name: string }[];
+  elements: [] | { id: string; name: string }[];
+  onChange: (event: SelectChangeEvent) => void;
 };
 
 const SelectDropdown: React.FC<SelectDropdownProps> = ({
@@ -14,13 +21,16 @@ const SelectDropdown: React.FC<SelectDropdownProps> = ({
   labelId,
   label,
   elements,
+  onChange,
 }) => {
   return (
     <FormControl fullWidth sx={{ marginTop: "25px" }}>
       <InputLabel id={id}>{inputLabel}</InputLabel>
-      <Select labelId={labelId} label={label}>
-        {elements?.map((element: { name: string }) => (
-          <MenuItem key={element.name}>{element.name}</MenuItem>
+      <Select labelId={labelId} label={label} onChange={onChange}>
+        {elements?.map((element: { id: number | string; name: string }) => (
+          <MenuItem key={element.name} value={element.id}>
+            {element.name}
+          </MenuItem>
         ))}
       </Select>
     </FormControl>

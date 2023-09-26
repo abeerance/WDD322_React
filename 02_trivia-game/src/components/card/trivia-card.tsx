@@ -10,16 +10,38 @@ import {
   Button,
   Card,
   CardContent,
+  SelectChangeEvent,
   TextField,
   Typography,
 } from "@mui/material";
 import { teal } from "@mui/material/colors";
-import { useEffect, useState } from "react";
+import {
+  Dispatch,
+  FormEvent,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import { apiClient } from "../../constants/api-client";
 import { Globals } from "../../utils/utils";
 import SelectDropdown from "../common/select-dropdown";
 
-const TriviaCard: React.FC = () => {
+type TriviaCardProps = {
+  setTriviaQuestions: Dispatch<SetStateAction<[]>>;
+};
+
+const TriviaCard: React.FC<TriviaCardProps> = ({ setTriviaQuestions }) => {
+  // 1. Erstellt useStates für alle vier Inputs (jeder Input hat einen eigenen useState)
+  const [selectedNumber, setSelecterNumber] = useState<number>(10);
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const [selectedDifficulty, setSelectedDifficulty] = useState<string>("");
+  const [selectedType, setSelectedType] = useState<string>("");
+  // 1.5 TextField (benützt Value für den Wert), Select (benützt Value für den Wert)
+  // 2. Implementiert eventListeners für die Inputs (Textfields, SelectDropDowns)
+  // 3. Damit der eventListener im SelectDropDown funktioniert, muss dieser heruntergeproppt werden
+  // 4. Aktualisiert die useStates anhand den ausgewählten Werten durch die eventListeners
+  // 5. Für die Überprüfung könnt ihr concole.log benützen
+
   // 1. Erstelle ein useState für die Kategorien
   const [categories, setCategories] = useState<[]>([]);
 
@@ -43,11 +65,38 @@ const TriviaCard: React.FC = () => {
     // 9. useEffect nur einmal aufrufen
   }, []);
 
+  // 10. Erstellt ein useState für die triviaQuestions
+  // 11. Erstellt einen handleSubmit (event: FormEvent) => void
+  // 12. Ist eine Async function
+  // 13. Im handleSubmit wird dann die API aufgerufen
+  // 13.5 Schaut euchd as beispiel von getAllCategories an
+  // 14. Die API-URL wird anhand ternary operators und den selected Values zusammengesetzt
+  // 15. Wenn die Response 200 ist, dann setzt die triviaQuestions mit den Daten von der API
+
+  const handleSubmit = async (e: FormEvent) => {
+    // preventDefault damit die Seite nicht neu geladen wird
+    e.preventDefault();
+
+    const apiResponse = await apiClient.get(
+      `/api.php?amount=${selectedNumber}${
+        selectedCategory !== "" ? `&category=${selectedCategory}` : ""
+      }${selectedDifficulty !== "" ? `&difficulty=${selectedDifficulty}` : ""}${
+        selectedType !== "" ? `&type=${selectedType}` : ""
+      }`
+    );
+
+    if (apiResponse.status === 200) {
+      setTriviaQuestions(apiResponse.data.results);
+    } else {
+      console.log("Error");
+    }
+  };
+
   return (
     <Card sx={{ minWidth: "600px", marginTop: "50px" }}>
       <CardContent>
         <Typography>Pick out a combination to generate trivia cards</Typography>
-        <Box component='form'>
+        <Box component='form' noValidate onSubmit={handleSubmit}>
           <Box
             sx={{
               display: "flex",
@@ -60,6 +109,11 @@ const TriviaCard: React.FC = () => {
               id='number-of-questions'
               label='Number'
               type='number'
+              value={selectedNumber}
+              inputProps={{ inputMode: "numeric", pattern: "[1-20]*" }}
+              onChange={(event) => {
+                setSelecterNumber(Number(event.target.value));
+              }}
               fullWidth
               sx={{ marginTop: "25px" }}
             />
@@ -70,6 +124,9 @@ const TriviaCard: React.FC = () => {
               labelId='simple-select-helper-category'
               label='Category'
               elements={categories}
+              onChange={(event: SelectChangeEvent) => {
+                setSelectedCategory(event.target.value as string);
+              }}
             />
             {/* 3. Formcontrol für die Schwierigkeit / Difficulty */}
             <SelectDropdown
@@ -78,6 +135,9 @@ const TriviaCard: React.FC = () => {
               labelId='simple-select-helper-diff'
               label='Difficulty'
               elements={Globals.difficulties}
+              onChange={(event: SelectChangeEvent) => {
+                setSelectedDifficulty(event.target.value as string);
+              }}
             />
             {/* 4. Formcontrol für die Typ / Type */}
             <SelectDropdown
@@ -86,8 +146,10 @@ const TriviaCard: React.FC = () => {
               labelId='simple-select-helper-type'
               label='Type'
               elements={Globals.type}
+              onChange={(event: SelectChangeEvent) => {
+                setSelectedType(event.target.value as string);
+              }}
             />
-
             {/* 5. Button für den Submit */}
             <Button
               variant='contained'
@@ -98,6 +160,7 @@ const TriviaCard: React.FC = () => {
                 marginBottom: "10px",
                 background: teal[900],
               }}
+              type='submit'
             >
               Generate Trivia Cards
             </Button>
