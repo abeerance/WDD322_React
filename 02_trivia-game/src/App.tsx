@@ -1,11 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import { useState } from "react";
 import TriviaCard from "./components/card/trivia-card";
+import TriviaQuestionCard from "./components/trivia-questions/trivia-question-card";
 
 function App() {
   const [triviaQuestions, setTriviaQuestions] = useState<[]>([]);
-
-  console.log(triviaQuestions);
+  const [selectedCategory, setSelectedCategory] = useState<string>("");
 
   return (
     <Box
@@ -20,7 +20,18 @@ function App() {
       }}
     >
       <Typography variant='h2'>This is a trivia game</Typography>
-      <TriviaCard setTriviaQuestions={setTriviaQuestions} />
+      {triviaQuestions.length > 0 ? (
+        <TriviaQuestionCard
+          triviaQuestions={triviaQuestions}
+          setTriviaQuestions={setTriviaQuestions}
+        />
+      ) : (
+        <TriviaCard
+          setTriviaQuestions={setTriviaQuestions}
+          selectedCategory={selectedCategory}
+          setSelectedCategory={setSelectedCategory}
+        />
+      )}
     </Box>
   );
 }

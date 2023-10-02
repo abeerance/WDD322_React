@@ -12,3 +12,39 @@
     5. Das Grid hat einen autofill, styling der Karten ist euch überlassen.
     6. BONUS: Jede Karte soll eine andere / zufällige Farbe haben (normales JavaScript)
 */
+
+import { Box, Typography } from "@mui/material";
+import { generateRandomColor } from "../../utils/random-colors/generate-random-colors";
+
+type TriviaQuestionProps = {
+  difficulty: string;
+  type: string;
+};
+
+const TriviaQuestion: React.FC<TriviaQuestionProps> = ({
+  difficulty,
+  type,
+}) => {
+  const randomColor = generateRandomColor;
+
+  return (
+    <Box
+      sx={{
+        minHeight: "200px",
+        minWidth: "200px",
+        background: `#${randomColor}`,
+        margin: "20px",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        flexDirection: "column",
+        borderRadius: "15px",
+      }}
+    >
+      <Typography variant='h5'>{difficulty.toUpperCase()}</Typography>
+      <Typography variant='h6'>{type}</Typography>
+    </Box>
+  );
+};
+
+export default TriviaQuestion;

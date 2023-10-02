@@ -11,6 +11,7 @@ type SelectDropdownProps = {
   inputLabel: string;
   labelId: string;
   label: string;
+  value: string;
   elements: [] | { id: string; name: string }[];
   onChange: (event: SelectChangeEvent) => void;
 };
@@ -20,13 +21,14 @@ const SelectDropdown: React.FC<SelectDropdownProps> = ({
   inputLabel,
   labelId,
   label,
+  value,
   elements,
   onChange,
 }) => {
   return (
     <FormControl fullWidth sx={{ marginTop: "25px" }}>
       <InputLabel id={id}>{inputLabel}</InputLabel>
-      <Select labelId={labelId} label={label} onChange={onChange}>
+      <Select labelId={labelId} label={label} onChange={onChange} value={value}>
         {elements?.map((element: { id: number | string; name: string }) => (
           <MenuItem key={element.name} value={element.id}>
             {element.name}

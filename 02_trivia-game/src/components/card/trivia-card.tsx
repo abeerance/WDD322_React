@@ -28,12 +28,17 @@ import SelectDropdown from "../common/select-dropdown";
 
 type TriviaCardProps = {
   setTriviaQuestions: Dispatch<SetStateAction<[]>>;
+  selectedCategory: string;
+  setSelectedCategory: Dispatch<SetStateAction<string>>;
 };
 
-const TriviaCard: React.FC<TriviaCardProps> = ({ setTriviaQuestions }) => {
+const TriviaCard: React.FC<TriviaCardProps> = ({
+  setTriviaQuestions,
+  selectedCategory,
+  setSelectedCategory,
+}) => {
   // 1. Erstellt useStates für alle vier Inputs (jeder Input hat einen eigenen useState)
   const [selectedNumber, setSelecterNumber] = useState<number>(10);
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>("");
   const [selectedType, setSelectedType] = useState<string>("");
   // 1.5 TextField (benützt Value für den Wert), Select (benützt Value für den Wert)
@@ -123,6 +128,7 @@ const TriviaCard: React.FC<TriviaCardProps> = ({ setTriviaQuestions }) => {
               inputLabel='Category'
               labelId='simple-select-helper-category'
               label='Category'
+              value={selectedCategory}
               elements={categories}
               onChange={(event: SelectChangeEvent) => {
                 setSelectedCategory(event.target.value as string);
@@ -134,6 +140,7 @@ const TriviaCard: React.FC<TriviaCardProps> = ({ setTriviaQuestions }) => {
               inputLabel='Difficulty'
               labelId='simple-select-helper-diff'
               label='Difficulty'
+              value={selectedDifficulty}
               elements={Globals.difficulties}
               onChange={(event: SelectChangeEvent) => {
                 setSelectedDifficulty(event.target.value as string);
@@ -145,6 +152,7 @@ const TriviaCard: React.FC<TriviaCardProps> = ({ setTriviaQuestions }) => {
               inputLabel='Type'
               labelId='simple-select-helper-type'
               label='Type'
+              value={selectedType}
               elements={Globals.type}
               onChange={(event: SelectChangeEvent) => {
                 setSelectedType(event.target.value as string);
