@@ -12,8 +12,6 @@ const TriviaQuestionCard: React.FC<TriviaQuestionCardProps> = ({
   triviaQuestions,
   setTriviaQuestions,
 }) => {
-  console.log(triviaQuestions);
-
   return (
     <>
       <Button
@@ -31,15 +29,17 @@ const TriviaQuestionCard: React.FC<TriviaQuestionCardProps> = ({
         </Typography>
         {/* Array mapping & slicing für die Kategorie */}
         {triviaQuestions.length > 0 &&
-          triviaQuestions.slice(0, 1).map((question: { category: string }) => (
-            <Typography
-              key={question.category}
-              variant='h4'
-              sx={{ marginLeft: "10px" }}
-            >
-              {question.category}
-            </Typography>
-          ))}
+          triviaQuestions
+            .slice(0, 1)
+            .map((question: { category: string; question: string }) => (
+              <Typography
+                key={question.question}
+                variant='h4'
+                sx={{ marginLeft: "10px" }}
+              >
+                {question.category}
+              </Typography>
+            ))}
       </Box>
       <Grid
         container
@@ -62,6 +62,9 @@ const TriviaQuestionCard: React.FC<TriviaQuestionCardProps> = ({
                 key={question.question}
                 difficulty={question.difficulty}
                 type={question.type}
+                question={question.question}
+                correctAnswer={question.correct_answer}
+                incorrectAnswers={question.incorrect_answers}
               />
             );
           }
