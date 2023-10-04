@@ -114,5 +114,6 @@ build
 .strapi-updater.json
 
 
+*crt
 certs
 certs/*
