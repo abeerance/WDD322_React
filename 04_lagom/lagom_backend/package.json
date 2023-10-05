@@ -16,6 +16,7 @@
     "@strapi/plugin-users-permissions": "4.14.3",
     "@strapi/strapi": "4.14.3",
     "pg": "8.8.0",
+    "qs": "^6.11.2",
     "strapi-auto-uuid": "^0.0.8",
     "strapi-plugin-menus": "^1.5.0",
     "strapi-plugin-react-icons": "^0.2.0"
