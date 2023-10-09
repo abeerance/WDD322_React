@@ -1,4 +1,3 @@
-import fs from "fs";
 import path from "path";
 
 export default ({ env }) => {
@@ -65,11 +64,7 @@ export default ({ env }) => {
         ssl: env.bool("DATABASE_SSL", false) && {
           key: env("DATABASE_SSL_KEY", undefined),
           cert: env("DATABASE_SSL_CERT", undefined),
-          ca: fs
-            .readFileSync(
-              path.resolve(__dirname, "../../certs/ca-certificate.crt")
-            )
-            .toString(),
+          ca: env("DATABASE_SSL_CA", undefined),
           capath: env("DATABASE_SSL_CAPATH", undefined),
           cipher: env("DATABASE_SSL_CIPHER", undefined),
           rejectUnauthorized: env.bool(
