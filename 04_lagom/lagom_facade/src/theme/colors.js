@@ -37,7 +37,7 @@ module.exports = {
   mono: {
     beige: "rgba(251, 232, 212, 1",
     blue: "rgba(68, 150, 199, 1)",
-    white: "rgba(254, 250, 244, 1)",
+    white: "rgba(254, 250, 243, 1)",
     yellow: "rgba(250, 236, 166, 1)",
     red: "rgba(201, 73, 34, 1)",
     black: "rgba(20, 20, 20, 1)",
