@@ -1,3 +1,9 @@
+import MainPage from "@/components/pages/main-page";
+
 export default function Home() {
-  return <main className='flex min-h-screen flex-col p-24'></main>;
+  return (
+    <MainPage>
+      <h1>hello</h1>
+    </MainPage>
+  );
 }
