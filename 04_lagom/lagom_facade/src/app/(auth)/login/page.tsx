@@ -5,6 +5,7 @@ import FormButton from "@/components/forms/form-button";
 import FormInput from "@/components/forms/form-input";
 import MainPage from "@/components/pages/main-page";
 import { useRouter } from "next/navigation";
+
 import { FC, FormEvent, useState } from "react";
 
 const LoginPage: FC = () => {
@@ -16,7 +17,9 @@ const LoginPage: FC = () => {
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
 
-    console.log(e);
+    console.log(username, password);
+
+    // sprich endpoint api/login
   };
 
   return (

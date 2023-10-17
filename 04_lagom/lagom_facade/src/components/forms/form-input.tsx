@@ -22,7 +22,7 @@ const FormInput: FC<FormInputProps> = ({
 
   return (
     <div
-      className={`flex border border-mono-black py-2 px-4 focus-within:border-mono-blue  ${additionalClasses}`}
+      className={`flex border border-mono-black py-2 px-4 focus-within:border-mono-blue ${additionalClasses}`}
     >
       <input
         type={revealPassword ? "text" : type}
@@ -31,8 +31,8 @@ const FormInput: FC<FormInputProps> = ({
         onChange={onChange}
         className='flex-grow bg-mono-white outline-0 placeholder-mono-black'
       />
-      {type === "password" ? (
-        revealPassword ? (
+      {type === "password" &&
+        (revealPassword ? (
           <RiEyeOffLine
             size={22}
             onClick={() => setRevealPassword(!revealPassword)}
@@ -44,8 +44,7 @@ const FormInput: FC<FormInputProps> = ({
             onClick={() => setRevealPassword(!revealPassword)}
             className='cursor-pointer'
           />
-        )
-      ) : null}
+        ))}
     </div>
   );
 };
