@@ -12,7 +12,7 @@ const Form: FC<FormProps> = ({ children, onSubmit, additionalClasses }) => {
   return (
     <form
       onSubmit={onSubmit}
-      className={`flex flex-col p-12 space-y-8 border border-mono-black w-2/6 ${additionalClasses}`}
+      className={`flex flex-col p-12 border border-mono-black ${additionalClasses}`}
     >
       {children}
     </form>

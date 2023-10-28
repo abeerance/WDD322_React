@@ -23,9 +23,9 @@ const Header: FC = async () => {
   return (
     <header className='bg-mono-white'>
       {/* desktop navigation */}
-      <div className='hidden md:grid md:grid-cols-11 border-b border-mono-black px-12'>
+      <div className='hidden md:grid md:grid-cols-11 border-b border-mono-black px-6 lg:px-12'>
         <Navigation navItems={data.data} />
-        <div className='col-span-1 flex justify-center border-x border-mono-black px-12 py-5'>
+        <div className='col-span-1 flex justify-center border-x border-mono-black px-6 lg:px-12 py-5'>
           <Link className='font-bree text-mono-black text-7xl p-4' href='/'>
             L
           </Link>
@@ -44,7 +44,7 @@ const Header: FC = async () => {
           </Link>
           <SubNavigationMobile />
         </div>
-        <div className='flex'>
+        <div className='flex justify-between items-center h-full'>
           <div className='border-r border-mono-black flex items-center p-2'>
             <RiMenuLine size={24} />
           </div>

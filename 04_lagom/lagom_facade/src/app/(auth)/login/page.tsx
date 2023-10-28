@@ -6,27 +6,41 @@ import FormInput from "@/components/forms/form-input";
 import MainPage from "@/components/pages/main-page";
 import { useRouter } from "next/navigation";
 
-import { FC, FormEvent, useState } from "react";
+import { FC } from "react";
+import { SubmitHandler, useForm } from "react-hook-form";
+
+type LoginInputs = {
+  username: string;
+  password: string;
+};
 
 const LoginPage: FC = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<LoginInputs>({
+    defaultValues: {
+      username: "",
+      password: "",
+    },
+  });
 
   const router = useRouter();
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-
-    console.log(username, password);
-
-    // sprich endpoint api/login
+  const onSubmit: SubmitHandler<LoginInputs> = (data) => {
+    console.log(data);
   };
 
   return (
     <MainPage additionalClasses='items-center'>
-      <Form onSubmit={handleSubmit} additionalClasses='my-20'>
-        <h1 className='text-2xl'>Welcome Back</h1>
-        <p>
+      <Form
+        onSubmit={handleSubmit(onSubmit)}
+        additionalClasses='w-6/6 sm:w-5/6 md:w-4/6 lg:w-3/6 xl:w-2/6'
+      >
+        <h1 className='text-2xl mb-4'>Welcome Back</h1>
+        <p className='mb-6'>
           Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laborum,
           natus mollitia! Ut eveniet aliquam cumque corrupti earum sed in vero
           sint obcaecati dicta mollitia, eos quidem! Quia cupiditate unde illum!
@@ -34,18 +48,18 @@ const LoginPage: FC = () => {
         <FormInput
           type='text'
           placeholder='Username'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          register={register("username", { required: "Username is required." })}
+          errors={errors.username}
         />
         <FormInput
           type='password'
           placeholder='Password'
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          register={register("password", { required: "Password is required." })}
+          errors={errors.password}
         />
         <button
           onClick={() => router.push("/signup")}
-          className='ml-auto block'
+          className='ml-auto block mt-4 mb-4'
         >
           No account? Register here
         </button>

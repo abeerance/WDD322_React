@@ -40,7 +40,7 @@ const SearchBar: FC = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className='flex border-2 border-mono-black py-1 px-4 rounded-full justify-between focus-within:border-mono-blue'
+      className='flex justify-between items-center h-full w-full md:w-44 lg:w-full md:border-2 border-mono-black py-1 px-4 md:rounded-full focus-within:border-mono-blue'
     >
       <input
         type='text'
@@ -49,7 +49,7 @@ const SearchBar: FC = () => {
         onFocus={handleFocus}
         onBlur={handleBlur}
         placeholder='Search'
-        className='bg-mono-white outline-0 placeholder-mono-black w-60'
+        className='w-full bg-mono-white outline-0 placeholder-mono-black'
       />
       <RiSearchLine
         size={22}
