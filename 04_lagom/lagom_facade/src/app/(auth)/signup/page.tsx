@@ -4,6 +4,7 @@ import Form from "@/components/forms/form";
 import FormButton from "@/components/forms/form-button";
 import FormInput from "@/components/forms/form-input";
 import MainPage from "@/components/pages/main-page";
+import axios from "axios";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -37,8 +38,24 @@ const SignupPage: FC = () => {
 
   const router = useRouter();
 
-  const onSubmit: SubmitHandler<SignupInputs> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<SignupInputs> = async (data) => {
+    try {
+      // create a response
+      // we communicate with the previously created
+      //api route /src/app/api/auth/signup
+      const response = await axios.post("/api/auth/signup", data);
+      console.log(response);
+
+      // check if the response is successful
+      if (response.status === 200) {
+        // redirect to the login page
+        router.push("/login");
+      }
+    } catch (error) {
+      // if there is an error
+      // log it
+      console.log(error);
+    }
   };
 
   return (

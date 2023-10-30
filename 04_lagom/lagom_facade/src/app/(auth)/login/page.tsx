@@ -18,7 +18,6 @@ const LoginPage: FC = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<LoginInputs>({
     defaultValues: {
