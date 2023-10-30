@@ -4,6 +4,7 @@ import Form from "@/components/forms/form";
 import FormButton from "@/components/forms/form-button";
 import FormInput from "@/components/forms/form-input";
 import MainPage from "@/components/pages/main-page";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import { FC } from "react";
@@ -31,6 +32,9 @@ const LoginPage: FC = () => {
   const onSubmit: SubmitHandler<LoginInputs> = (data) => {
     console.log(data);
   };
+
+  const { data: session } = useSession();
+  console.log(session);
 
   return (
     <MainPage additionalClasses='items-center'>

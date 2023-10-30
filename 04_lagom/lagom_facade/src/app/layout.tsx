@@ -1,6 +1,6 @@
 import Header from "@/components/header/header";
+import LagomSessionProvider from "@/providers/lagom-session-provider";
 import type { Metadata } from "next";
-import { SessionProvider } from "next-auth/react";
 import { Bree_Serif } from "next/font/google";
 import "./globals.css";
 
@@ -24,10 +24,10 @@ export default function RootLayout({
   return (
     <html lang='en'>
       <body className={bree.variable}>
-        <SessionProvider>
+        <LagomSessionProvider>
           <Header />
           {children}
-        </SessionProvider>
+        </LagomSessionProvider>
       </body>
     </html>
   );
