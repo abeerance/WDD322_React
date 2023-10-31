@@ -4,7 +4,7 @@ import Form from "@/components/forms/form";
 import FormButton from "@/components/forms/form-button";
 import FormInput from "@/components/forms/form-input";
 import MainPage from "@/components/pages/main-page";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 import { FC } from "react";
@@ -29,8 +29,16 @@ const LoginPage: FC = () => {
 
   const router = useRouter();
 
-  const onSubmit: SubmitHandler<LoginInputs> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<LoginInputs> = async (data) => {
+    try {
+      // communicate with the signIn function of next-auth
+      const response = await signIn("credentials", {
+        redirect: false,
+        username: data.username,
+        password: data.password,
+      });
+      console.log(response);
+    } catch (error) {}
   };
 
   const { data: session } = useSession();

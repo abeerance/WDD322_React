@@ -24,6 +24,7 @@ export async function POST(req: Request) {
 
   // check if the data is valid
   if (!data.username || !data.email || !data.password) {
+    console.log("blalbalba");
     return NextResponse.json(
       { message: "Username, email and password are required" },
       { status: 400 }
@@ -32,15 +33,18 @@ export async function POST(req: Request) {
 
   // make the request to Strapi API
   try {
+    console.log("what the fuck");
     const strapiResponse = await axios.post(
       // endpoint of the Strapi API for registration
       `${process.env.BASE_URL}/api/auth/local/register`,
+      // body of the request
       { username: data.username, email: data.email, password: data.password }
     );
 
     // return the response from the Strapi API
     return NextResponse.json({ user: strapiResponse.data }, { status: 200 });
   } catch (error: any) {
+    console.log("im here");
     // return the error
     return NextResponse.json(
       {
