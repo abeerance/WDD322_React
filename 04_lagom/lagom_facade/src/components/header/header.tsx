@@ -4,7 +4,6 @@ import { FC } from "react";
 import { RiMenuLine } from "react-icons/ri";
 import Navigation from "../navigation/navigation";
 import SubNavigation from "../navigation/sub-navigation";
-import SubNavigationMobile from "../navigation/sub-navigation-mobile";
 import SearchBar from "../search/search-bar";
 
 // data fetch for menu items
@@ -42,7 +41,7 @@ const Header: FC = async () => {
           >
             L
           </Link>
-          <SubNavigationMobile />
+          <SubNavigation />
         </div>
         <div className='flex justify-between items-center h-full'>
           <div className='border-r border-mono-black flex items-center p-2'>

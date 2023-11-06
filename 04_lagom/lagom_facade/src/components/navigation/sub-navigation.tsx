@@ -1,6 +1,7 @@
 "use client";
 
 import useFetchUser from "@/hooks/use-fetch-user";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FC } from "react";
 import { RiHeartLine, RiShoppingCartLine, RiUser3Line } from "react-icons/ri";
@@ -9,9 +10,12 @@ import SearchBar from "../search/search-bar";
 
 const SubNavigation: FC = () => {
   const router = useRouter();
-  const { user, isLoading, error } = useFetchUser();
+  // username: hadrian
+  // passwort: Test!1234
+  const { userData, isLoading, error } = useFetchUser();
+  console.log(userData);
 
-  console.log(user, isLoading, error);
+  // console.log(userData?.user.avatar.formats.medium.url, isLoading, error);
 
   // const { data: session } = useSession();
 
@@ -30,26 +34,67 @@ const SubNavigation: FC = () => {
   //   fetchUserMe();
   // }, [session?.accessToken]);
 
+  // full url of image
+  const smallAvatarUrl = `${process.env.NEXT_PUBLIC_BASE_URL}${userData?.user.avatar?.formats?.small?.url}`;
+
   return (
-    <nav className='col-span-5 self-center px-12'>
-      <ul className='flex justify-end items-center'>
-        <li>
-          <IconButton icon={<RiHeartLine size={22} />} />
-        </li>
-        <li className='ml-4'>
-          <IconButton icon={<RiShoppingCartLine size={22} />} />
-        </li>
-        <li className='ml-4'>
-          <SearchBar />
-        </li>
-        <li className='ml-4'>
-          <IconButton
-            icon={<RiUser3Line size={22} />}
-            onClick={() => router.push("/login")}
-          />
-        </li>
-      </ul>
-    </nav>
+    <>
+      {/* desktop navigation  */}
+      <nav className='hidden md:block col-span-5 self-center px-12'>
+        <ul className='flex justify-end items-center'>
+          <li>
+            <IconButton icon={<RiHeartLine size={22} />} />
+          </li>
+          <li className='ml-4'>
+            <IconButton icon={<RiShoppingCartLine size={22} />} />
+          </li>
+          <li className='ml-4'>
+            <SearchBar />
+          </li>
+          <li className='ml-4'>
+            {userData !== null ? (
+              <div
+                className='h-9 w-9 relative rounded-full overflow-hidden cursor-pointer'
+                onClick={() => router.push("/profile")}
+              >
+                <Image src={smallAvatarUrl} fill alt='Avatar' />
+              </div>
+            ) : (
+              <IconButton
+                icon={<RiUser3Line size={22} />}
+                onClick={() => router.push("/login")}
+              />
+            )}
+          </li>
+        </ul>
+      </nav>
+      {/* mobile navigation */}
+      <nav className='block md:hidden'>
+        <ul className='flex'>
+          <li>
+            <IconButton icon={<RiHeartLine size={18} />} />
+          </li>
+          <li className='ml-2'>
+            <IconButton icon={<RiShoppingCartLine size={18} />} />
+          </li>
+          <li className='ml-2'>
+            {userData !== null ? (
+              <div
+                className='h-7 w-7 relative rounded-full overflow-hidden cursor-pointer'
+                onClick={() => router.push("/profile")}
+              >
+                <Image src={smallAvatarUrl} fill alt='Avatar' />
+              </div>
+            ) : (
+              <IconButton
+                icon={<RiUser3Line size={18} />}
+                onClick={() => router.push("/login")}
+              />
+            )}
+          </li>
+        </ul>
+      </nav>
+    </>
   );
 };
 
