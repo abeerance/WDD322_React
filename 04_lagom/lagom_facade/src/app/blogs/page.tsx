@@ -73,7 +73,7 @@ const Blogs: FC = async () => {
                   <h1 className='line-clamp-2 font-medium text-2xs md:text-xs'>
                     {blog.attributes.title}
                   </h1>
-                  <p
+                  <div
                     className='line-clamp-3 text-3xs mt-2'
                     dangerouslySetInnerHTML={{
                       __html: blog.attributes.content,
