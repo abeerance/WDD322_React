@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.blog-card:hover {
+  background-color: var(--shadow-color);
+  color: #fff;
+}
