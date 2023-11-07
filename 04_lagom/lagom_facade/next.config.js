@@ -4,9 +4,9 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "lagom-backend-5itxg.ondigitalocean.app",
+        hostname: "lagom-spaces.fra1.digitaloceanspaces.com",
         port: "",
-        pathname: "/uploads/**",
+        pathname: "/**",
       },
       // example of locallly hosted images
       {
