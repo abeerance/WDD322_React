@@ -6,3 +6,33 @@
   background-color: var(--shadow-color);
   color: #fff;
 }
+
+.blog-content h1.p1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 1rem 0;
+}
+
+.blog-content h2.p1 {
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+  margin: 1rem 0;
+}
+
+.blog-content p.p1 {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  margin: 1rem 0;
+}
+
+.blog-content ul.p1 {
+  margin: 1rem 0;
+  list-style-type: disc;
+}
+
+.blog-content ul > li.p1 {
+  margin: 1rem 0;
+  list-style-type: circle !important;
+}

@@ -12,7 +12,7 @@ import { FC, ReactNode } from "react";
 
 type BlogClientWrapperProps = {
   children: ReactNode;
-  slug: string;
+  slug?: string;
 };
 
 const BlogClientWrapper: FC<BlogClientWrapperProps> = ({ children, slug }) => {

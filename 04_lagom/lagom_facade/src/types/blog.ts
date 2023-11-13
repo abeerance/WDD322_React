@@ -25,3 +25,7 @@ export type BlogPost = {
     };
   };
 };
+
+export type Blog = {
+  data: BlogPost[];
+};
