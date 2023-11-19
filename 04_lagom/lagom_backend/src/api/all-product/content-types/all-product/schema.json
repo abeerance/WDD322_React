@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "all_products",
+  "info": {
+    "singularName": "all-product",
+    "pluralName": "all-products",
+    "displayName": "AllProduct"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "GroupName": {
+      "type": "string"
+    },
+    "jackets": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::jacket.jacket"
+    },
+    "shirts": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::shirt.shirt"
+    },
+    "shoes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::shoe.shoe"
+    }
+  }
+}

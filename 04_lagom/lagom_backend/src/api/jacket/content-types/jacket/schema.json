@@ -1,0 +1,46 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jackets",
+  "info": {
+    "singularName": "jacket",
+    "pluralName": "jackets",
+    "displayName": "Jacket",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Title": {
+      "type": "string"
+    },
+    "Images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "Description": {
+      "type": "richtext"
+    },
+    "Price": {
+      "type": "decimal"
+    },
+    "Color": {
+      "type": "enumeration",
+      "enum": [
+        "white",
+        "black",
+        "green",
+        "blue",
+        "red",
+        "brown",
+        "beige",
+        "gray"
+      ]
+    }
+  }
+}

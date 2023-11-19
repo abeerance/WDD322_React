@@ -362,87 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiBlogBlog extends Schema.CollectionType {
-  collectionName: 'blogs';
-  info: {
-    singularName: 'blog';
-    pluralName: 'blogs';
-    displayName: 'Blog';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  pluginOptions: {
-    i18n: {
-      localized: true;
-    };
-  };
-  attributes: {
-    title: Attribute.String &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    heroImage: Attribute.Media &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    publishedOn: Attribute.Date &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    content: Attribute.RichText &
-      Attribute.CustomField<
-        'plugin::ckeditor5.CKEditor',
-        {
-          preset: 'toolbar';
-        }
-      > &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    uuid: Attribute.UID &
-      Attribute.CustomField<'plugin::field-uuid.uuid'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    users_permissions_user: Attribute.Relation<
-      'api::blog.blog',
-      'oneToOne',
-      'plugin::users-permissions.user'
-    >;
-    slug: Attribute.UID<'api::blog.blog', 'title'> &
-      Attribute.SetPluginOptions<{
-        i18n: {
-          localized: true;
-        };
-      }>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::blog.blog', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::blog.blog', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    localizations: Attribute.Relation<
-      'api::blog.blog',
-      'oneToMany',
-      'api::blog.blog'
-    >;
-    locale: Attribute.String;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -899,6 +818,233 @@ export interface PluginReactIconsIconlibrary extends Schema.CollectionType {
   };
 }
 
+export interface ApiAllProductAllProduct extends Schema.CollectionType {
+  collectionName: 'all_products';
+  info: {
+    singularName: 'all-product';
+    pluralName: 'all-products';
+    displayName: 'AllProduct';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    GroupName: Attribute.String;
+    jackets: Attribute.Relation<
+      'api::all-product.all-product',
+      'oneToMany',
+      'api::jacket.jacket'
+    >;
+    shirts: Attribute.Relation<
+      'api::all-product.all-product',
+      'oneToMany',
+      'api::shirt.shirt'
+    >;
+    shoes: Attribute.Relation<
+      'api::all-product.all-product',
+      'oneToMany',
+      'api::shoe.shoe'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::all-product.all-product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::all-product.all-product',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiBlogBlog extends Schema.CollectionType {
+  collectionName: 'blogs';
+  info: {
+    singularName: 'blog';
+    pluralName: 'blogs';
+    displayName: 'Blog';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  pluginOptions: {
+    i18n: {
+      localized: true;
+    };
+  };
+  attributes: {
+    title: Attribute.String &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    heroImage: Attribute.Media &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    publishedOn: Attribute.Date &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    content: Attribute.RichText &
+      Attribute.CustomField<
+        'plugin::ckeditor5.CKEditor',
+        {
+          preset: 'toolbar';
+        }
+      > &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    uuid: Attribute.UID &
+      Attribute.CustomField<'plugin::field-uuid.uuid'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    users_permissions_user: Attribute.Relation<
+      'api::blog.blog',
+      'oneToOne',
+      'plugin::users-permissions.user'
+    >;
+    slug: Attribute.UID<'api::blog.blog', 'title'> &
+      Attribute.SetPluginOptions<{
+        i18n: {
+          localized: true;
+        };
+      }>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::blog.blog', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::blog.blog', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    localizations: Attribute.Relation<
+      'api::blog.blog',
+      'oneToMany',
+      'api::blog.blog'
+    >;
+    locale: Attribute.String;
+  };
+}
+
+export interface ApiJacketJacket extends Schema.CollectionType {
+  collectionName: 'jackets';
+  info: {
+    singularName: 'jacket';
+    pluralName: 'jackets';
+    displayName: 'Jacket';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    Images: Attribute.Media;
+    Description: Attribute.RichText;
+    Price: Attribute.Decimal;
+    Color: Attribute.Enumeration<
+      ['white', 'black', 'green', 'blue', 'red', 'brown', 'beige', 'gray']
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::jacket.jacket',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::jacket.jacket',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiShirtShirt extends Schema.CollectionType {
+  collectionName: 'shirts';
+  info: {
+    singularName: 'shirt';
+    pluralName: 'shirts';
+    displayName: 'Shirt';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    Images: Attribute.Media;
+    Description: Attribute.RichText;
+    Price: Attribute.Decimal;
+    Color: Attribute.Enumeration<
+      ['white', 'black', 'green', 'blue', 'red', 'brown', 'beige', 'gray']
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::shirt.shirt',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::shirt.shirt',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiShoeShoe extends Schema.CollectionType {
+  collectionName: 'shoes';
+  info: {
+    singularName: 'shoe';
+    pluralName: 'shoes';
+    displayName: 'Shoe';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    Title: Attribute.String;
+    Images: Attribute.Media;
+    Description: Attribute.RichText;
+    Price: Attribute.Decimal;
+    Color: Attribute.Enumeration<
+      ['white', 'black', 'green', 'blue', 'red', 'brown', 'beige', 'gray']
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::shoe.shoe', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::shoe.shoe', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -909,7 +1055,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::blog.blog': ApiBlogBlog;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
@@ -919,6 +1064,11 @@ declare module '@strapi/types' {
       'plugin::menus.menu': PluginMenusMenu;
       'plugin::menus.menu-item': PluginMenusMenuItem;
       'plugin::react-icons.iconlibrary': PluginReactIconsIconlibrary;
+      'api::all-product.all-product': ApiAllProductAllProduct;
+      'api::blog.blog': ApiBlogBlog;
+      'api::jacket.jacket': ApiJacketJacket;
+      'api::shirt.shirt': ApiShirtShirt;
+      'api::shoe.shoe': ApiShoeShoe;
     }
   }
 }
