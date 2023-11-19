@@ -963,6 +963,7 @@ export interface ApiJacketJacket extends Schema.CollectionType {
     Color: Attribute.Enumeration<
       ['white', 'black', 'green', 'blue', 'red', 'brown', 'beige', 'gray']
     >;
+    Brand: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -987,6 +988,7 @@ export interface ApiShirtShirt extends Schema.CollectionType {
     singularName: 'shirt';
     pluralName: 'shirts';
     displayName: 'Shirt';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -999,6 +1001,7 @@ export interface ApiShirtShirt extends Schema.CollectionType {
     Color: Attribute.Enumeration<
       ['white', 'black', 'green', 'blue', 'red', 'brown', 'beige', 'gray']
     >;
+    Brand: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1023,6 +1026,7 @@ export interface ApiShoeShoe extends Schema.CollectionType {
     singularName: 'shoe';
     pluralName: 'shoes';
     displayName: 'Shoe';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1035,6 +1039,7 @@ export interface ApiShoeShoe extends Schema.CollectionType {
     Color: Attribute.Enumeration<
       ['white', 'black', 'green', 'blue', 'red', 'brown', 'beige', 'gray']
     >;
+    Brand: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

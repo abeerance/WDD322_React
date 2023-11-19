@@ -41,6 +41,9 @@
         "beige",
         "gray"
       ]
+    },
+    "Brand": {
+      "type": "string"
     }
   }
 }

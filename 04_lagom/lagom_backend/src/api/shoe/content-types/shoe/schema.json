@@ -4,7 +4,8 @@
   "info": {
     "singularName": "shoe",
     "pluralName": "shoes",
-    "displayName": "Shoe"
+    "displayName": "Shoe",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,11 +16,12 @@
       "type": "string"
     },
     "Images": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
     },
     "Description": {
       "type": "richtext"
@@ -39,6 +41,9 @@
         "beige",
         "gray"
       ]
+    },
+    "Brand": {
+      "type": "string"
     }
   }
 }
