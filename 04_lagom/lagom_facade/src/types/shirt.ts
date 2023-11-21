@@ -33,6 +33,7 @@ export type Shirt = {
     Price: number;
     Color: string;
     Brand: string;
+    slug: string;
     Images: {
       data: ShirtImage[];
     };

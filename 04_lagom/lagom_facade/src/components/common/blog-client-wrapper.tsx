@@ -7,18 +7,28 @@
 
 "use client";
 
+import { CardContentType } from "@/types/enum";
 import { useRouter } from "next/navigation";
 import { FC, ReactNode } from "react";
 
-type BlogClientWrapperProps = {
+type CardSlugClientWrapperProps = {
   children: ReactNode;
-  slug?: string;
+  cardContentType: CardContentType;
+  slug: string;
 };
 
-const BlogClientWrapper: FC<BlogClientWrapperProps> = ({ children, slug }) => {
+const CardSlugClientWrapper: FC<CardSlugClientWrapperProps> = ({
+  children,
+  cardContentType,
+  slug,
+}) => {
   const router = useRouter();
 
-  return <div onClick={() => router.push(`/blogs/${slug}`)}>{children}</div>;
+  return (
+    <div onClick={() => router.push(`/${cardContentType}/${slug}`)}>
+      {children}
+    </div>
+  );
 };
 
-export default BlogClientWrapper;
+export default CardSlugClientWrapper;

@@ -1,6 +1,6 @@
 // here we will display all the blogs
 
-import BlogPostCard from "@/components/blog/blog-post-card";
+import BlogPostCard from "@/components/cards/blog/blog-post-card";
 import MainPage from "@/components/pages/main-page";
 import { BlogPost } from "@/types/blog";
 import dataFetch from "@/utils/data-fetch";

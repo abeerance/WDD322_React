@@ -1,7 +1,8 @@
+import { CardContentType } from "@/types/enum";
 import { colorsRange, getRandomColor } from "@/utils/get-random-colors";
 import { FC } from "react";
-import LagomImage from "../common/lagom-image";
-import BlogClientWrapper from "./blog-client-wrapper";
+import CardSlugClientWrapper from "../../common/blog-client-wrapper";
+import LagomImage from "../../common/lagom-image";
 import BlogOverviewContent from "./blog-overview-content";
 
 type BlogPostCardProps = {
@@ -32,14 +33,17 @@ const BlogPostCard: FC<BlogPostCardProps> = ({
         "--shadow-color": randomColor,
       }}
     >
-      <BlogClientWrapper slug={slug}>
+      <CardSlugClientWrapper
+        slug={slug}
+        cardContentType={CardContentType.BLOGS}
+      >
         <LagomImage
           additionalClasses='h-48'
           imageUrl={imageUrl}
           alt='blog post hero image'
         />
         <BlogOverviewContent title={title} content={content} />
-      </BlogClientWrapper>
+      </CardSlugClientWrapper>
     </div>
   );
 };

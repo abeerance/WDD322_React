@@ -1,8 +1,11 @@
 "use client";
 
-import LagomImage from "@/components/common/lagom-image";
+import ProductCard from "@/components/cards/product/product-card";
+import CardSlugClientWrapper from "@/components/common/blog-client-wrapper";
+import ColorsFilter from "@/components/filters/colors/colors-filter";
 import MainPage from "@/components/pages/main-page";
-import { Shirt, shirtColor } from "@/types/shirt";
+import { CardContentType } from "@/types/enum";
+import { Shirt } from "@/types/shirt";
 import { colorsRange, getRandomColor } from "@/utils/get-random-colors";
 import axios from "axios";
 import { FC, useEffect, useState } from "react";
@@ -54,22 +57,7 @@ const ShopPage: FC = () => {
 
   return (
     <MainPage additionalClasses='items-center'>
-      <div className='w-full'>
-        <h3 className='font-medium text-sm'>Colors</h3>
-        <div className='mt-2'>
-          {/* Since shirt colors are of enum type, we need to map over the values of the enum */}
-          {Object.values(shirtColor).map((color) => (
-            <button
-              key={color}
-              className='mr-4 border-2 border-mono-black text-xs px-2 py-1'
-              onClick={() => handleColorClick(color)}
-            >
-              {/* Set the first letter to uppercase */}
-              {color.charAt(0).toUpperCase() + color.slice(1)}
-            </button>
-          ))}
-        </div>
-      </div>
+      <ColorsFilter handleColorClick={handleColorClick} />
       {/* Check the loading state */}
       {isLoading ? (
         <div className='min-h-screen'>
@@ -85,37 +73,22 @@ const ShopPage: FC = () => {
             shirts.map((shirt: Shirt) => {
               const randomColor = getRandomColor(colorsRange);
               return (
-                <div
+                <CardSlugClientWrapper
                   key={shirt.id}
-                  className='rounded-md overflow-hidden cursor-pointer'
-                  style={{
-                    boxShadow: `7px 7px 0 ${randomColor}`,
-                    border: `1px solid ${randomColor}`,
-                    "--shadow-color": randomColor,
-                  }}
+                  slug={shirt.attributes.slug}
+                  cardContentType={CardContentType.SHIRTS}
                 >
-                  <LagomImage
-                    additionalClasses='h-56'
+                  <ProductCard
+                    randomColor={randomColor}
                     imageUrl={
                       shirt.attributes.Images.data[3].attributes.formats.medium
                         .url
                     }
-                    alt='shirt image'
+                    title={shirt.attributes.Title}
+                    brand={shirt.attributes.Brand}
+                    price={shirt.attributes.Price}
                   />
-                  <div className='h-full px-4 py-6'>
-                    <h1 className='line-clamp-2 font-medium text-2xs md:text-xs'>
-                      {shirt.attributes.Title}
-                    </h1>
-                    <div className='flex items-center justify-between mt-1'>
-                      <h2 className='line-clamp-2 font-sm text-3xs md:text-2xs'>
-                        {shirt.attributes.Brand}
-                      </h2>
-                      <h2 className='line-clamp-2 font-sm text-3xs md:text-2xs'>
-                        {shirt.attributes.Price} CHF
-                      </h2>
-                    </div>
-                  </div>
-                </div>
+                </CardSlugClientWrapper>
               );
             })
           )}
