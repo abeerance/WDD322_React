@@ -39,3 +39,7 @@ export type Shirt = {
     };
   };
 };
+
+export type ShirtContent = {
+  data: Shirt[];
+};
