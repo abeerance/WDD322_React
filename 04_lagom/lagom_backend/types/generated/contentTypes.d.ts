@@ -964,6 +964,7 @@ export interface ApiJacketJacket extends Schema.CollectionType {
       ['white', 'black', 'green', 'blue', 'red', 'brown', 'beige', 'gray']
     >;
     Brand: Attribute.String;
+    slug: Attribute.UID<'api::jacket.jacket', 'Title'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1002,6 +1003,7 @@ export interface ApiShirtShirt extends Schema.CollectionType {
       ['white', 'black', 'green', 'blue', 'red', 'brown', 'beige', 'gray']
     >;
     Brand: Attribute.String;
+    slug: Attribute.UID<'api::shirt.shirt', 'Title'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1040,6 +1042,7 @@ export interface ApiShoeShoe extends Schema.CollectionType {
       ['white', 'black', 'green', 'blue', 'red', 'brown', 'beige', 'gray']
     >;
     Brand: Attribute.String;
+    slug: Attribute.UID<'api::shoe.shoe', 'Title'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
