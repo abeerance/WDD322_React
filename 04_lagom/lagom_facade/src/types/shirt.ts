@@ -9,7 +9,7 @@ export enum shirtColor {
   GRAY = "gray",
 }
 
-type ShirtImage = {
+export type ShirtImage = {
   id: number;
   attributes: {
     name: string;

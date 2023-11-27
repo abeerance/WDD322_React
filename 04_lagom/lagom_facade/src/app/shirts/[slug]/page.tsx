@@ -1,3 +1,4 @@
+import ImageCarousel from "@/components/carousel/image-carousel";
 import MainPage from "@/components/pages/main-page";
 import { ShirtContent } from "@/types/shirt";
 import dataFetch from "@/utils/data-fetch";
@@ -10,9 +11,7 @@ type ShirtProps = {
 };
 
 async function getShirt(slug: string) {
-  return await dataFetch(
-    `/api/shirts?filters[slug][$eq]=${slug}&populate=heroImage`
-  );
+  return await dataFetch(`/api/shirts?filters[slug][$eq]=${slug}&populate=*`);
 }
 
 const Shirt: FC<ShirtProps> = async ({ params }) => {
@@ -20,7 +19,7 @@ const Shirt: FC<ShirtProps> = async ({ params }) => {
 
   const shirtContent = data.data[0].attributes;
 
-  console.log(shirtContent);
+  console.log(shirtContent.Images);
 
   return (
     <MainPage>
@@ -28,6 +27,7 @@ const Shirt: FC<ShirtProps> = async ({ params }) => {
         <h1 className='text-xl sm:text-2xl md:text-3xl lg:text-4xl font-semibold'>
           {shirtContent.Brand}
         </h1>
+        <ImageCarousel images={shirtContent.Images} />
         <h2 className='text-xs sm:text-sm md:text-md lg:text-lg mt-1'>
           {shirtContent.Title}
         </h2>
